@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phổ Điểm THPT Quốc Gia 2024</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        div {
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        canvas {
+            max-width: 800px;
+            max-height: 600px;
+        }
+        label, select, button {
+            font-size: 14px;
+        }
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Phổ Điểm THPT Quốc Gia 2024</h1>
+        <form id="score-form">
+            <label for="province">Tỉnh / Thành phố:</label>
+            <select id="province" name="province" required>
+                <option value="01">01 - THÀNH PHỐ HÀ NỘI</option>
+                <option value="02">02 - THÀNH PHỐ HỒ CHÍ MINH</option>
+                <option value="03">03 - THÀNH PHỐ HẢI PHÒNG</option>
+                <option value="04">04 - THÀNH PHỐ ĐÀ NẴNG</option>
+                <option value="05">05 - TỈNH HÀ GIANG</option>
+                <option value="06">06 - TỈNH CAO BẰNG</option>
+                <option value="07">07 - TỈNH LAI CHÂU</option>
+                <option value="08">08 - TỈNH LÀO CAI</option>
+                <option value="09">09 - TỈNH TUYÊN QUANG</option>
+                <option value="10">10 - TỈNH LẠNG SƠN</option>
+                <option value="11">11 - TỈNH BẮC KẠN</option>
+                <option value="12">12 - TỈNH THÁI NGUYÊN</option>
+                <option value="13">13 - TỈNH YÊN BÁI</option>
+                <option value="14">14 - TỈNH SƠN LA</option>
+                <option value="15">15 - TỈNH PHÚ THỌ</option>
+                <option value="16">16 - TỈNH VĨNH PHÚC</option>
+                <option value="17">17 - TỈNH QUẢNG NINH</option>
+                <option value="18">18 - TỈNH BẮC GIANG</option>
+                <option value="19">19 - TỈNH BẮC NINH</option>
+                <option value="21">21 - TỈNH HẢI DƯƠNG</option>
+                <option value="22">22 - TỈNH HƯNG YÊN</option>
+                <option value="23">23 - TỈNH HÒA BÌNH</option>
+                <option value="24">24 - TỈNH HÀ NAM</option>
+                <option value="25">25 - TỈNH NAM ĐỊNH</option>
+                <option value="26">26 - TỈNH THÁI BÌNH</option>
+                <option value="27">27 - TỈNH NINH BÌNH</option>
+                <option value="28">28 - TỈNH THANH HÓA</option>
+                <option value="29">29 - TỈNH NGHỆ AN</option>
+                <option value="30">30 - TỈNH HÀ TĨNH</option>
+                <option value="31">31 - TỈNH QUẢNG BÌNH</option>
+                <option value="32">32 - TỈNH QUẢNG TRỊ</option>
+                <option value="33">33 - TỈNH THỪA THIÊN - HUẾ</option>
+                <option value="34">34 - TỈNH QUẢNG NAM</option>
+                <option value="35">35 - TỈNH QUẢNG NGÃI</option>
+                <option value="36">36 - TỈNH KON TUM</option>
+                <option value="37">37 - TỈNH BÌNH ĐỊNH</option>
+                <option value="38">38 - TỈNH GIA LAI</option>
+                <option value="39">39 - TỈNH PHÚ YÊN</option>
+                <option value="40">40 - TỈNH ĐĂK LĂK</option>
+                <option value="41">41 - TỈNH KHÁNH HÒA</option>
+                <option value="42">42 - TỈNH LÂM ĐỒNG</option>
+                <option value="43">43 - TỈNH BÌNH PHƯỚC</option>
+                <option value="44">44 - TỈNH BÌNH DƯƠNG</option>
+                <option value="45">45 - TỈNH NINH THUẬN</option>
+                <option value="46">46 - TỈNH TÂY NINH</option>
+                <option value="47">47 - TỈNH BÌNH THUẬN</option>
+                <option value="48">48 - TỈNH ĐỒNG NAI</option>
+                <option value="49">49 - TỈNH LONG AN</option>
+                <option value="50">50 - TỈNH ĐỒNG THÁP</option>
+                <option value="51">51 - TỈNH AN GIANG</option>
+                <option value="52">52 - TỈNH BÀ RỊA - VŨNG TÀU</option>
+                <option value="53">53 - TỈNH TIỀN GIANG</option>
+                <option value="54">54 - TỈNH KIÊN GIANG</option>
+                <option value="55">55 - THÀNH PHỐ CẦN THƠ</option>
+                <option value="56">56 - TỈNH BẾN TRE</option>
+                <option value="57">57 - TỈNH VĨNH LONG</option>
+                <option value="58">58 - TỈNH TRÀ VINH</option>
+                <option value="59">59 - TỈNH SÓC TRĂNG</option>
+                <option value="60">60 - TỈNH BẠC LIÊU</option>
+                <option value="61">61 - TỈNH CÀ MAU</option>
+                <option value="62">62 - TỈNH ĐIỆN BIÊN</option>
+                <option value="63">63 - TỈNH ĐĂK NÔNG</option>
+                <option value="64">64 - TỈNH HẬU GIANG</option>
+            </select>
+            <br><br>
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="toan">Toán</option>
+                <option value="ngu_van">Ngữ Văn</option>
+                <option value="ngoai_ngu">Ngoại Ngữ</option>
+                <option value="vat_li">Vật Lý</option>
+                <option value="hoa_hoc">Hoá Học</option>
+                <option value="sinh_hoc">Sinh Học</option>
+                <option value="lich_su">Lịch Sử</option>
+                <option value="dia_li">Địa Lý</option>
+                <option value="gdcd">Giáo Dục Công Dân</option>
+            </select>
+            <br><br>
+            <button type="submit">Phổ điểm</button>
+        </form>
+        <br>
+        <canvas id="score-chart" width="600" height="400"></canvas>
+    </div>
+
+    <script>
+        let chartInstance = null;  // Variable to store chart instance
+
+        document.getElementById('score-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const province = document.getElementById('province').value;
+            const subject = document.getElementById('subject').value;
+            
+            // Subject names for chart title
+            const subjectNames = {
+                toan: 'Toán',
+                ngu_van: 'Ngữ Văn',
+                ngoai_ngu: 'Ngoại Ngữ',
+                vat_li: 'Vật Lý',
+                hoa_hoc: 'Hoá Học',
+                sinh_hoc: 'Sinh Học',
+                lich_su: 'Lịch Sử',
+                dia_li: 'Địa Lý',
+                gdcd: 'Giáo Dục Công Dân'
+            };
+
+            try {
+                const response = await fetch(`http://localhost:5001/get_scores?province=${province}&subject=${subject}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                const data = await response.json();
+
+                // Destroy existing chart instance if any
+                if (chartInstance) {
+                    chartInstance.destroy();
+                }
+
+                const ctx = document.getElementById('score-chart').getContext('2d');
+
+                // Prepare data for chart
+                const scores = data.scores;
+                const counts = data.counts;
+                const missingCount = data.missing_count;
+                
+                // Add missing count to the end of the dataset
+                scores.push('Missing');
+                counts.push(missingCount);
+
+                chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: scores,
+                        datasets: [{
+                            label: `Phổ Điểm Cho Môn ${subjectNames[subject]}`,
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    maxRotation: 0,
+                                    minRotation: 0,
+                                    font: {
+                                        size: 10
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Điểm',
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    font: {
+                                        size: 12
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Thí sinh',
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                alert('Error fetching data: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
